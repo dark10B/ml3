@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
+dataset=pd.read_csv("C:\\Users\\Arbaaz\\Desktop\\CSV\\iris.csv")
+
+print(dataset.describe())
+
+setosa=dataset[dataset['variety']=='Setosa']
+versicolor=dataset[dataset['variety']=='Versicolor']
+virginica=dataset[dataset['variety']=='Virginica']
+
+fig,ax=plt.subplots(1,2,figsize=(9,9))
+
+setosa.plot(x='sepal.length',y='sepal.width',kind='scatter',ax=ax[0],label='setosa',color='r')
+versicolor.plot(x='sepal.length',y='sepal.width',kind='scatter',ax=ax[0],label='versicolor',color='b')
+virginica.plot(x='sepal.length',y='sepal.width',kind='scatter',ax=ax[0],label='virginica',color='g')
+
+setosa.plot(x='petal.length',y='petal.width',kind='scatter',ax=ax[1],label='setosa',color='r')
+versicolor.plot(x='petal.length',y='petal.width',kind='scatter',ax=ax[1],label='versicolor',color='b')
+virginica.plot(x='petal.length',y='petal.width',kind='scatter',ax=ax[1],label='virginica',color='g')
+
+ax[0].set(title="Sepal Comparison", ylabel="Sepal Width")
+ax[1].set(title="Petal Comparison", ylabel="Petal Width")
+
+plt.show()

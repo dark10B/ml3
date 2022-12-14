@@ -1,0 +1,21 @@
+import pandas as pd
+
+dataset=pd.read_csv("C:\\Users\\Arbaaz\\Desktop\\CSV\\iris.csv")
+
+print("*** Data types of Field***")
+dataset["variety"]=dataset["variety"].astype('category')
+print(dataset.dtypes)
+print(dataset["variety"])
+print()
+
+print("***Adding New Column***")
+dataset["variety_num"]=dataset["variety"].cat.codes
+print(dataset.dtypes)
+print()
+
+print("____________________________________")
+
+pd.set_option("display.max_rows",150)
+pd.set_option("display.max_column",7)
+
+print(dataset)

@@ -1,0 +1,33 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn import linear_model,preprocessing
+
+datas=pd.read_csv("C:\\Users\\Arbaaz\\Desktop\\CSV\\data1.csv")
+
+print(datas)
+
+x=datas.iloc[:,1:2].values
+y=datas.iloc[:,2].values
+
+line=linear_model.LinearRegression()
+line.fit(x,y)
+
+plt.scatter(x,y,color='blue')
+plt.plot(x,line.predict(x),color='red')
+plt.title("Linear Regression")
+plt.xlabel("Temperature")
+plt.ylabel("Pressure")
+plt.show()
+
+
+x_poly=preprocessing.PolynomialFeatures(degree=8).fit_transform(x)
+
+line2=linear_model.LinearRegression()
+line2.fit(x_poly,y)
+
+plt.scatter(x,y,color='blue')
+plt.plot(x,line2.predict(x_poly),color='red')
+plt.title("polynomial Regression")
+plt.xlabel("Temperature")
+plt.ylabel("Pressure")
+plt.show()

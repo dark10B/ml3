@@ -1,0 +1,10 @@
+import pandas as pd
+
+dataset=pd.read_csv("C:\\Users\\Arbaaz\\Desktop\\CSV\\employees.csv")
+
+print(dataset.describe())
+print(dataset)
+
+dataset.dropna(inplace=True)
+
+print(dataset)

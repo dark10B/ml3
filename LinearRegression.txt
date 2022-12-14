@@ -1,0 +1,26 @@
+import pandas as pd
+import numpy as np
+from sklearn import linear_model
+from sklearn.model_selection import train_test_split
+
+boston=pd.read_csv("C:\\Users\\Arbaaz\\Desktop\\CSV\\housing.csv")
+print(boston)
+
+boston_features=['CRIM','ZN','INDUS','CHAS','NOX','RM','AGE','DIS','RAD','TAX','PTRATIO']
+
+df_x=pd.DataFrame(boston, columns=boston_features)
+df_y=pd.DataFrame(boston['MEDV'])
+
+print(df_x.describe())
+
+reg=linear_model.LinearRegression()
+x_train,x_test,y_train,y_test=train_test_split(df_x,df_y,test_size=0.33)
+
+reg.fit(x_train,y_train)
+print(reg.coef_)
+
+y_pred=reg.predict(x_test)
+print(y_pred)
+print(y_pred[2])
+print(y_test)
+print(np.mean((y_pred-y_test)**2))

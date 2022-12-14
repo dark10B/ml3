@@ -1,0 +1,21 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+df=pd.read_csv("C:\\Users\\Arbaaz\\Desktop\\CSV\\weather.csv")
+df_getdummy=pd.get_dummies(data=df,columns=['Temperature','Outlook','Humidity','Windy'])
+
+x=df_getdummy.drop('Played?',axis=1)
+y=df_getdummy['Played?']
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.30,random_state=101)
+
+dtree=DecisionTreeClassifier(max_depth=4)
+dtree.fit(x_train,y_train)
+predictions=dtree.predict(x_test)
+print(predictions)
+
+fig=plt.figure(figsize=(6,6))
+plot_tree(dtree,feature_names=df_getdummy.columns, fontsize=6, filled=True, class_names=['Not Play','Play'])
+plt.show()
